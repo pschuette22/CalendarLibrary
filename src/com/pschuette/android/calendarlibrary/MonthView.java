@@ -67,6 +67,7 @@ public class MonthView extends LinearLayout implements OnClickListener {
 	public void drawCalendar() {
 
 
+		// Redrawing calendar, make sure there is no selected day
 		if (selectedDayView != null) {
 			setDaySelected(selectedDayView, false);
 			selectedDayView = null;
@@ -161,7 +162,11 @@ public class MonthView extends LinearLayout implements OnClickListener {
 	}
 
 	private int getCellStartoffset() {
-		Calendar calendarCopy = (Calendar) adapter.cal.clone();
+		
+		// Copy the calendar
+		Calendar calendarCopy = Calendar.getInstance();
+		calendarCopy.setTime(adapter.cal.getTime());
+		
 		// Set it to the first Day of the Month
 		calendarCopy.set(Calendar.DAY_OF_MONTH, 1);
 

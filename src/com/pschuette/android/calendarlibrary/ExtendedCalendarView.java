@@ -74,7 +74,7 @@ public class ExtendedCalendarView extends RelativeLayout implements
 		dayViewHolder = (LinearLayout) findViewById(R.id.baseview_dayviewholder);
 
 		mAdapter = new CalendarAdapter(context, cal);
-
+		drawCalendarAndDayDetails();
 	}
 
 	@Override
@@ -100,9 +100,8 @@ public class ExtendedCalendarView extends RelativeLayout implements
 			cal.set(Calendar.MONTH, cal.get(Calendar.MONTH) - 1);
 			cal.set(Calendar.DAY_OF_MONTH, 1);
 		}
-
-		drawCalendarAndDayDetails();
 		mAdapter = new CalendarAdapter(context, cal);
+		drawCalendarAndDayDetails();
 
 	}
 
@@ -113,8 +112,9 @@ public class ExtendedCalendarView extends RelativeLayout implements
 			cal.set(Calendar.MONTH, cal.get(Calendar.MONTH) + 1);
 			cal.set(Calendar.DAY_OF_MONTH, 1);
 		}
-		drawCalendarAndDayDetails();
+		
 		mAdapter = new CalendarAdapter(context, cal);
+		drawCalendarAndDayDetails();
 
 	}
 

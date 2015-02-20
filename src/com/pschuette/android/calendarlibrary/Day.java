@@ -6,10 +6,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import android.content.ContentResolver;
-import android.content.ContentUris;
 import android.content.Context;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.provider.CalendarContract.Instances;
 

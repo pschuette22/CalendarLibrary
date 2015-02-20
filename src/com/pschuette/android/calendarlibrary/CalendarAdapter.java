@@ -31,6 +31,10 @@ public class CalendarAdapter extends BaseAdapter {
 		this.cal = cal;
 		this.context = context;
 		cal.set(Calendar.DAY_OF_MONTH, 1);
+		cal.set(Calendar.HOUR_OF_DAY, 0);
+		cal.set(Calendar.MINUTE, 0);
+		cal.set(Calendar.SECOND, 0);
+		cal.set(Calendar.MILLISECOND, 0);
 		refreshDays();
 	}
 
@@ -40,7 +44,7 @@ public class CalendarAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public Object getItem(int position) {
+	public Day getItem(int position) {
 		return dayList.get(position);
 	}
 
@@ -139,7 +143,9 @@ public class CalendarAdapter extends BaseAdapter {
 		int arraySize = lastDay + firstDay;
 
 		int endBuffer = 7 - (arraySize % 7);
-		arraySize += endBuffer;
+		if (endBuffer < 7) {
+			arraySize += endBuffer;
+		}
 
 		days = new String[arraySize];
 

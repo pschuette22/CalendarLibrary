@@ -18,7 +18,7 @@ public class MainActivity extends Activity implements EventItemClickListener,
 		CalendarSyncStateView syncStateView = new CalendarSyncStateView(this,
 				this);
 
-		setContentView(syncStateView);
+		setContentView(calendarView);
 
 	}
 
