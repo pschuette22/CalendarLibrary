@@ -56,9 +56,8 @@ public class CalendarAdapter extends BaseAdapter {
 	public int getPrevMonth() {
 		if (cal.get(Calendar.MONTH) == cal.getActualMinimum(Calendar.MONTH)) {
 			cal.set(Calendar.YEAR, cal.get(Calendar.YEAR - 1));
-		} else {
-
-		}
+		} 
+		
 		int month = cal.get(Calendar.MONTH);
 		if (month == 0) {
 			return month = 11;
