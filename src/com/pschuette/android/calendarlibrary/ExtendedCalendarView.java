@@ -33,7 +33,8 @@ public class ExtendedCalendarView extends RelativeLayout implements
 	private RelativeLayout base;
 	private ImageView next, prev;
 	private EventItemClickListener eventClickListener;
-
+	
+	
 	public ExtendedCalendarView(Context context,
 			EventItemClickListener eventClickListener) {
 		super(context);
@@ -47,6 +48,7 @@ public class ExtendedCalendarView extends RelativeLayout implements
 		super(context, attrs);
 		this.context = context;
 		this.eventClickListener = eventClickListener;
+
 		init();
 	}
 
@@ -55,6 +57,7 @@ public class ExtendedCalendarView extends RelativeLayout implements
 		super(context, attrs, defStyle);
 		this.context = context;
 		this.eventClickListener = eventClickListener;
+
 		init();
 	}
 
@@ -236,6 +239,17 @@ public class ExtendedCalendarView extends RelativeLayout implements
 	 */
 	public void setNextMonthButtonImageDrawable(Drawable drawable) {
 		next.setImageDrawable(drawable);
+	
+	}
+	
+	
+	/**
+	 * Call this to start a calendar refresh. This is a blocking method
+	 */
+	public void onRefreshStarted(){
+
+		monthView.drawCalendar();		
+		
 	}
 
 }

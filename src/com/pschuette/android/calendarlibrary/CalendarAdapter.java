@@ -2,6 +2,7 @@ package com.pschuette.android.calendarlibrary;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -22,7 +23,8 @@ public class CalendarAdapter extends BaseAdapter {
 	Context context;
 	Calendar cal;
 	public String[] days;
-	private List<View> dayViews = new ArrayList<View>();
+	private HashMap<Day, View> dayViewMap = new HashMap<Day, View>();
+	// private List<View> dayViews = new ArrayList<View>();
 	// OnAddNewEventClick mAddEvent;
 
 	ArrayList<Day> dayList = new ArrayList<Day>();
@@ -56,8 +58,8 @@ public class CalendarAdapter extends BaseAdapter {
 	public int getPrevMonth() {
 		if (cal.get(Calendar.MONTH) == cal.getActualMinimum(Calendar.MONTH)) {
 			cal.set(Calendar.YEAR, cal.get(Calendar.YEAR - 1));
-		} 
-		
+		}
+
 		int month = cal.get(Calendar.MONTH);
 		if (month == 0) {
 			return month = 11;
@@ -124,7 +126,8 @@ public class CalendarAdapter extends BaseAdapter {
 			convertView.setTag(day);
 		}
 
-		dayViews.add(convertView);
+		dayViewMap.put(day, convertView);
+
 		return convertView;
 	}
 
@@ -189,19 +192,18 @@ public class CalendarAdapter extends BaseAdapter {
 
 	public void notifyDatasetChangedForDay(Day day) {
 		// if(!day.getEvents().isEmpty()){
-		for (View dayView : dayViews) {
-			if (dayView.getTag() == day) {
-				FrameLayout frame = (FrameLayout) dayView
-						.findViewById(R.id.hasevents_frame);
-				if (day.getEvents().isEmpty()) {
-					frame.setVisibility(View.INVISIBLE);
-				} else {
-					frame.setVisibility(View.VISIBLE);
-				}
-				break;
+		View dayView = dayViewMap.get(day);
+
+		if (dayView != null) {
+			FrameLayout frame = (FrameLayout) dayView
+					.findViewById(R.id.hasevents_frame);
+			if (day.getEvents().isEmpty()) {
+				frame.setVisibility(View.INVISIBLE);
+			} else {
+				frame.setVisibility(View.VISIBLE);
 			}
 		}
-		// }
+
 	}
 
 	// public abstract static class OnAddNewEventClick{

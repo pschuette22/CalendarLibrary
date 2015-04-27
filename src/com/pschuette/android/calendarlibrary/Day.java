@@ -10,6 +10,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.provider.CalendarContract.Instances;
+import android.view.View;
 
 public class Day {
 
@@ -29,6 +30,8 @@ public class Day {
 	ArrayList<Event> events = new ArrayList<Event>();
 	private GetEvents eventsTask;
 	private OnEventsLoadListener loadListener;
+	private boolean eventFetchCompleted;
+	private View hasEventsIndicatorView;
 
 	private static final String[] INSTANCE_PROJECTION = new String[] {
 			Instances.EVENT_ID, // 0
@@ -48,6 +51,7 @@ public class Day {
 		this.year = year;
 		this.month = month;
 		this.context = context;
+		this.eventFetchCompleted = false;
 		cal = Calendar.getInstance();
 		cal.set(year, month, day);
 		cal.set(Calendar.MILLISECOND, 0);
@@ -81,6 +85,10 @@ public class Day {
 		return cal;
 	}
 
+	public void setHasEventsIndicatorView(View indicatorView){
+		hasEventsIndicatorView = indicatorView;
+	}
+	
 	/**
 	 * Add an event to the day
 	 * 

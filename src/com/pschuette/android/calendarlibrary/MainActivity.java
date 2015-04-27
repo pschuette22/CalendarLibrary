@@ -1,11 +1,11 @@
 package com.pschuette.android.calendarlibrary;
 
-import com.pschuette.android.calendarlibrary.CalendarSyncStateAdapter.OnSyncStateChangedListener;
-import com.pschuette.android.calendarlibrary.DayAdapter.EventItemClickListener;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.Switch;
+
+import com.pschuette.android.calendarlibrary.CalendarSyncStateAdapter.OnSyncStateChangedListener;
+import com.pschuette.android.calendarlibrary.DayAdapter.EventItemClickListener;
 
 public class MainActivity extends Activity implements EventItemClickListener,
 		OnSyncStateChangedListener {
